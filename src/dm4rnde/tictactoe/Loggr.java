@@ -31,9 +31,9 @@ public class Loggr {
 	// here adjust the level, to get messages from only that level;
 	// here you can turn off/on logging, by setting level that is not being covered
 	// by code; by default all simple debug messages would be on level
-	// Level.FINE, and to see those debugging messages in console set level below to
-	// Level.FINE as well; and to not see those messages you could just set the
-	// level to Level.SEVERE, for example
+	// Level.FINE, and to see those debugging messages in console set level (of
+	// following variable) to Level.FINE as well; and to not see those messages you
+	// could just set the level to Level.SEVERE, for example
 	private static Level messageLevel = Level.FINE;
 	// private static Level messageLevel = Level.SEVERE;
 

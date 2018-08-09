@@ -39,17 +39,20 @@ public class PatternMatcher {
 		// Stream.of(c).forEach(r -> System.out.println(Arrays.toString(r)));
 		if (horizontalMatch(c, isCrossTurn)) {
 			String cr = isCrossTurn ? "crosses" : "circles";
-			System.out.format("%s won %s", cr, "horizontal");
+			String msg = String.format("%s won %s", cr, "horizontal");
+			Loggr.logFine(msg);
 			return true;
 		}
 		if (verticalMatch(c, isCrossTurn)) {
 			String cr = isCrossTurn ? "crosses" : "circles";
-			System.out.format("%s won %s", cr, "vertical");
+			String msg = String.format("%s won %s", cr, "vertical");
+			Loggr.logFine(msg);
 			return true;
 		}
 		if (diagonalMatch(c, isCrossTurn)) {
 			String cr = isCrossTurn ? "crosses" : "circles";
-			System.out.format("%s won %s", cr, "diagonal");
+			String msg = String.format("%s won %s", cr, "diagonal");
+			Loggr.logFine(msg);
 			return true;
 		}
 		return false;

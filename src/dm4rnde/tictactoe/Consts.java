@@ -16,6 +16,10 @@ limitations under the License.
 
 package dm4rnde.tictactoe;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Game constants.
  */

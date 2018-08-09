@@ -17,9 +17,7 @@ limitations under the License.
 package dm4rnde.tictactoe;
 
 import javafx.application.Application;
-
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -68,7 +66,7 @@ public class Main extends Application {
 		// StackPane root = new StackPane();
 
 		Canvas canvas = new Canvas(Consts.frameImgW, Consts.frameImgH);
-		canvas.setId("canvasArea");
+		canvas.setId("canvasAreaId");
 		final GraphicsContext gc = canvas.getGraphicsContext2D();
 		// root.getChildren().add(canvas);
 
@@ -104,8 +102,8 @@ public class Main extends Application {
 				boolean onTheGridLines = isLocationOnAnyOfTheGridLine(root, x, y);
 				// if on the grid, then don't allow to draw
 				if (!onTheGridLines) {
-					System.out.println(Consts.frameImgW);
-					System.out.println(Consts.frameImgH);
+					// Loggr.logFine("" + Consts.frameImgW);
+					// Loggr.logFine("" + Consts.frameImgH);
 					Box box = new Box(boxRightPos, boxDownPos, Consts.frameImgW, Consts.frameImgH, Consts.imgW,
 							Consts.imgH);
 					if (!boxesLayer.isAlreadyFilled(box)) {
@@ -121,10 +119,10 @@ public class Main extends Application {
 						}
 						crossTurn = crossTurn ? false : true;
 					} else {
-						System.out.println("no drawing; this section already drawn");
+						Loggr.logFine("no drawing; this section already drawn");
 					}
 				} else {
-					System.out.println("no drawing; mouse on grid line");
+					Loggr.logFine("no drawing; mouse on grid line");
 				}
 			}
 		});

@@ -39,7 +39,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 /**
- * This is a functioning realization of Tic-tac-toe game.
+ * This is minimal and basic (runnable and functioning) realization of
+ * tic-tac-toe game.
  * 
  * You can launch game from this class.
  * 

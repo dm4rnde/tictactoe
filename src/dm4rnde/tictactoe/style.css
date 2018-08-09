@@ -1,0 +1,12 @@
+.root {
+	-fx-background-image: url("grid.png");
+	-fx-background-repeat: stretch;
+	/* -fx-background-size: 210 210; */
+	-fx-background-position: top center;
+	-fx-effect: dropshadow(three-pass-box, black, 1, 0.5, 0, 0);
+}
+
+Button {
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+}

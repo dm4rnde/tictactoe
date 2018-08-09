@@ -29,9 +29,9 @@ public class Loggr {
 	public static final Logger LOGGER = Logger.getLogger(Consts.class.getPackage().getName());
 
 	// here adjust the level, to get messages from only that level;
-	// here you can turn off/on logging, by setting level that is not being covered
-	// by code; by default all simple debug messages would be on level
-	// Level.FINE, and to see those debugging messages in console set level (of
+	// you can turn off/on logging, by setting level that is not being covered
+	// by code; here, all simple debug messages would be on level
+	// Level.FINE, and to see those debugging messages in console then set level (of
 	// following variable) to Level.FINE as well; and to not see those messages you
 	// could just set the level to Level.SEVERE, for example
 	private static Level messageLevel = Level.FINE;
@@ -47,6 +47,9 @@ public class Loggr {
 		LOGGER.addHandler(handler);
 	}
 
+	// now do logging through this method instead of
+	// System.out.println; call this method from all other
+	// classes wherever debug message needs to be outputted
 	public static void logFine(String msg) {
 		LOGGER.log(Level.FINE, msg);
 	}

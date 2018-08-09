@@ -17,6 +17,7 @@ limitations under the License.
 package dm4rnde.tictactoe;
 
 import javafx.application.Application;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -74,12 +75,7 @@ public class Main extends Application {
 		btnRestart = new Button();
 		btnRestart.setText("Restart");
 		btnRestart.setId("btnRestartId");
-		btnRestart.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				restartGame(gc);
-			}
-		});
+		btnRestart.setOnAction((ActionEvent event) -> restartGame(gc));
 
 		HBox hBox = new HBox(5, btnRestart);
 		hBox.setAlignment(Pos.CENTER);
@@ -92,49 +88,45 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setResizable(false);
 
-		canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent e) {
-				if (!gameFinished) {
-					btnRestart.setDisable(false);
+		canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+			if (!gameFinished) {
+				btnRestart.setDisable(false);
 
-					int x = new Double(e.getSceneX()).intValue();
-					// int x = new Double(e.getSceneX()).intValue();
-					// column position
-					int boxRightPos = whichBoxInGivenMatrixSide(x, Consts.mX);
-					int y = new Double(e.getSceneY()).intValue();
-					// row position
-					int boxDownPos = whichBoxInGivenMatrixSide(y, Consts.mY);
+				int x = new Double(e.getSceneX()).intValue();
+				// int x = new Double(e.getSceneX()).intValue();
+				// column position
+				int boxRightPos = whichBoxInGivenMatrixSide(x, Consts.mX);
+				int y = new Double(e.getSceneY()).intValue();
+				// row position
+				int boxDownPos = whichBoxInGivenMatrixSide(y, Consts.mY);
 
-					// candidate box
-					boolean onTheGridLines = isLocationOnAnyOfTheGridLine(root, x, y);
-					// if on the grid, then don't allow to draw
-					if (!onTheGridLines) {
-						System.out.println(Consts.frameImgW);
-						System.out.println(Consts.frameImgH);
-						Box box = new Box(boxRightPos, boxDownPos, Consts.frameImgW, Consts.frameImgH, Consts.imgW,
-								Consts.imgH);
-						if (!boxesLayer.isAlreadyFilled(box)) {
-							if (crossTurn) {
-								box.draw(new Integer(boxDownPos).doubleValue(), new Integer(y).doubleValue(), gc,
-										imgCross, true);
-							} else {
-								box.draw(boxDownPos, new Double(y), gc, imgCircle, false);
-							}
-							boxesLayer.addBox(box);
-							if (PatternMatcher.checkForMatch(crossTurn, boxesLayer.getBoxes())) {
-								gameWonMessage(gc, canvas, crossTurn);
-							}
-							crossTurn = crossTurn ? false : true;
+				// candidate box
+				boolean onTheGridLines = isLocationOnAnyOfTheGridLine(root, x, y);
+				// if on the grid, then don't allow to draw
+				if (!onTheGridLines) {
+					System.out.println(Consts.frameImgW);
+					System.out.println(Consts.frameImgH);
+					Box box = new Box(boxRightPos, boxDownPos, Consts.frameImgW, Consts.frameImgH, Consts.imgW,
+							Consts.imgH);
+					if (!boxesLayer.isAlreadyFilled(box)) {
+						if (crossTurn) {
+							box.draw(new Integer(boxDownPos).doubleValue(), new Integer(y).doubleValue(), gc, imgCross,
+									true);
 						} else {
-							System.out.println("no drawing; this section already drawn");
+							box.draw(boxDownPos, new Double(y), gc, imgCircle, false);
 						}
+						boxesLayer.addBox(box);
+						if (PatternMatcher.checkForMatch(crossTurn, boxesLayer.getBoxes())) {
+							gameWonMessage(gc, canvas, crossTurn);
+						}
+						crossTurn = crossTurn ? false : true;
 					} else {
-						System.out.println("no drawing; mouse on grid line");
+						System.out.println("no drawing; this section already drawn");
 					}
+				} else {
+					System.out.println("no drawing; mouse on grid line");
 				}
 			}
-
 		});
 
 	}
